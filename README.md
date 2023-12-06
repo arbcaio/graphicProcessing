@@ -7,6 +7,8 @@ This repository contains the project work for the Graphic Processing course offe
 ## Team Members
 Caio Braga - chab@cin.ufpe.br
 Luis Guilherme - lgnunees@gmail.com
+Vlademir Jose - vlademirjos@gmail.com
+Geozedeque Guimaraes - ggs2@cin.ufpe.br
 
 ## Project Overview
 The project is structured in multiple stages, each focusing on different aspects of graphic processing.
