@@ -1,5 +1,4 @@
 from intersecoes import Esfera, Plano, intersecao_raio_esfera, intersecao_raio_plano
-import numpy as np
 
 # Definir uma esfera
 centro_esfera = [0, 0, 0]
