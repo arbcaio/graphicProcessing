@@ -41,6 +41,16 @@ def ler_arquivo_txt(nome_arquivo):
                 'vetor_normal': np.array([float(partes[4]), float(partes[5]), float(partes[6])]),
                 'cor_rgb': np.array([int(partes[7]), int(partes[8]), int(partes[9])])
             })
+        elif partes[0] == "Triangulo":
+            # Exemplo: Triangulo 0 0 0 1 0 0 0 1 0 255 0 0
+            if 'triangulos' not in cenas:
+                cenas['triangulos'] = []
+            cenas['triangulos'].append({
+                'ponto1': np.array([float(partes[1]), float(partes[2]), float(partes[3])]),
+                'ponto2': np.array([float(partes[4]), float(partes[5]), float(partes[6])]),
+                'ponto3': np.array([float(partes[7]), float(partes[8]), float(partes[9])]),
+                'cor_rgb': np.array([int(partes[10]), int(partes[11]), int(partes[12])])
+            })
         # Adicione outras estruturas conforme necessário
 
     return cenas
@@ -96,7 +106,7 @@ def criar_imagem_ppm(dados_imagem, resolucao):
     return img
 
 def main():
-    info_cena = ler_arquivo_txt('C:\\Users\\caioc\\OneDrive\\Documentos\\UFPE\\2023.2\\Processamento Grafico\\graphicProcessing\\primeiraEntrega\\cena.txt')
+    info_cena = ler_arquivo_txt('cena.txt')
     dados_imagem, resolucao = renderizar_cena(info_cena)
     imagem = criar_imagem_ppm(dados_imagem, resolucao)
     imagem.save('saida.ppm')
