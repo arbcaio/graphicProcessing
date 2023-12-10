@@ -1,5 +1,4 @@
 from vetor import Vetor
-import numpy as np
 
 # Criar vetores
 vetor1 = Vetor(1, 2, 3)

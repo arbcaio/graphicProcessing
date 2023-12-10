@@ -12,6 +12,8 @@ class Plano:
         self.vetor_normal = np.array(vetor_normal)
         self.cor_rgb = np.array(cor_rgb)
 
+# class Triangulo:
+
 def intersecao_raio_esfera(origem_raio, direcao_raio, esfera):
     origem_raio = np.array(origem_raio)
     direcao_raio = np.array(direcao_raio)
@@ -45,3 +47,4 @@ def intersecao_raio_plano(origem_raio, direcao_raio, plano):
     ponto_intersecao = origem_raio + t * direcao_raio
     return ponto_intersecao
 
+# def intersecao_raio_triangulo(arg):
