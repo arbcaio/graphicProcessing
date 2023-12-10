@@ -1,14 +1,18 @@
 from primeiraEntrega.vetor import Vetor
 from primeiraEntrega.pontos import Ponto
-from segundaEntrega.raio import Raio
+from raio import Raio
+from malhaTriangular import MalhaTriangular
 
 
 class Triangulo:
-    def __init__(self, id, pontos):
+    def __init__(self, id, pontos, cor):
         self.id = id
         self.pontos = pontos
+        self.cor = cor
+
         aresta1 = pontos[1] - pontos[0]
         aresta2 = pontos[2] - pontos[1]
+
         self.vetor1 = Vetor(*aresta1.coordenadas)
         self.vetor2 = Vetor(*aresta2.coordenadas)
         self.normal = self.vetor1.produto_vetorial(self.vetor2)
@@ -30,7 +34,7 @@ class Triangulo:
 
         # verificar se u está no intervalo [0,1]
         if u < 0.0 or u > 1.0:
-            return None  # Ponto de interseção fora do triângulo
+            return float('inf')  # Ponto de interseção fora do triângulo
 
         # calcular parâmetro v
         q = s.produto_vetorial(self.vetor1)

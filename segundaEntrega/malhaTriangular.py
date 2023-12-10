@@ -31,18 +31,23 @@ class MalhaTriangular:
         self.norm_vet = np.array(norm_vet)
         self.cor_rgb = cor_rgb
 
-    def intersect(self, raio):
+    def intersect(self, raio: Raio):
         t = float('inf')
         id = -1
 
         for triangulo in self.lista_triangulos:
-            curr = triangulo.intersect(raio)
+            curr, id = triangulo.intersect(raio)
             if curr[0] >= 0:
                 if curr[1] < t:
                     t = curr[0]
                     id = curr[1]
 
         return curr
+
+
+numTriangulos = int(input('Número de triângulos: '))
+numVertices = int(input('Número de vértices: '))
+
 
 
 
