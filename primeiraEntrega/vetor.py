@@ -27,3 +27,4 @@ class Vetor:
 
     def __repr__(self):
         return f"Vetor({self.coordenadas[0]}, {self.coordenadas[1]}, {self.coordenadas[2]})"
+
