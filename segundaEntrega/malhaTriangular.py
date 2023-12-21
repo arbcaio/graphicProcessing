@@ -4,7 +4,6 @@ from triangulo import Triangulo
 from raio import Raio
 
 
-
 class MalhaTriangular:
     def __init__(self, num_triangulos, num_vertices, lista_vertices, triplas, norm_triang, norm_vet, cor_rgb, ):
         """
@@ -23,13 +22,12 @@ class MalhaTriangular:
         self.vertices = [(Ponto(vertice[0], vertice[1], vertice[2])) for vertice in lista_vertices]
         # lista de triangulos com os pontos correspondentes à lista de vértices de acordo com os indices de cada tripla
         # que representa um triangulo
-        self.lista_triangulos = [Triangulo(id=uuid.uuid4(),
-                                           pontos=(self.vertices[tripla[0]], self.vertices[tripla[1]],
-                                                   self.vertices[tripla[2]]))
+        self.lista_triangulos = [Triangulo(pontos=(self.vertices[tripla[0]], self.vertices[tripla[1]],
+                                                   self.vertices[tripla[2]]), cor=cor_rgb)
                                  for tripla in triplas]
         self.norm_triang = np.array(norm_triang)
         self.norm_vet = np.array(norm_vet)
-        self.cor_rgb = cor_rgb
+        # self.cor_rgb = cor_rgb
 
     def intersect(self, raio: Raio):
         t = float('inf')
@@ -43,11 +41,3 @@ class MalhaTriangular:
                     id = curr[1]
 
         return curr
-
-
-numTriangulos = int(input('Número de triângulos: '))
-numVertices = int(input('Número de vértices: '))
-
-
-
-

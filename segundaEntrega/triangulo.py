@@ -1,14 +1,14 @@
 from primeiraEntrega.vetor import Vetor
 from primeiraEntrega.pontos import Ponto
 from raio import Raio
-from malhaTriangular import MalhaTriangular
+import uuid
 
 
 class Triangulo:
-    def __init__(self, id, pontos, cor):
-        self.id = id
+    def __init__(self, pontos, cor):
         self.pontos = pontos
         self.cor = cor
+        self.id = uuid.uuid4()
 
         aresta1 = pontos[1] - pontos[0]
         aresta2 = pontos[2] - pontos[1]
@@ -58,10 +58,4 @@ class Triangulo:
         return f'Triangulo {self.id}:\nPontos: {self.pontos}\nArestas: A = {self.vetor1}; B = {self.vetor2}'
 
 
-# teste para imprimir
-p1 = Ponto(0, 0, 0)
-p2 = Ponto(0, 1, 0)
-p3 = Ponto(0, 0, 1)
-tri = Triangulo(1, (p1, p2, p3))
 
-print(tri)
