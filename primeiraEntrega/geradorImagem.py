@@ -4,13 +4,15 @@ import numpy as np
 from camera import Camera
 from intersecoes import Esfera, Plano, intersecao_raio_esfera, intersecao_raio_plano
 from pontos import Ponto
+# from segundaEntrega.triangulo import Triangulo
 from vetor import Vetor
+
 
 def ler_arquivo_txt(nome_arquivo):
     cenas = {}
     with open(nome_arquivo, 'r') as arquivo:
         linhas = arquivo.readlines()
-    
+
     for linha in linhas:
         partes = linha.strip().split()
         if partes[0] == "Camera":
@@ -41,7 +43,7 @@ def ler_arquivo_txt(nome_arquivo):
                 'vetor_normal': np.array([float(partes[4]), float(partes[5]), float(partes[6])]),
                 'cor_rgb': np.array([int(partes[7]), int(partes[8]), int(partes[9])])
             })
-        elif partes[0] == "Triangulo":
+        '''elif partes[0] == "Triangulo":
             # Exemplo: Triangulo 0 0 0 1 0 0 0 1 0 255 0 0
             if 'triangulos' not in cenas:
                 cenas['triangulos'] = []
@@ -50,15 +52,16 @@ def ler_arquivo_txt(nome_arquivo):
                 'ponto2': np.array([float(partes[4]), float(partes[5]), float(partes[6])]),
                 'ponto3': np.array([float(partes[7]), float(partes[8]), float(partes[9])]),
                 'cor_rgb': np.array([int(partes[10]), int(partes[11]), int(partes[12])])
-            })
+            })'''
         # Adicione outras estruturas conforme necessário
 
     return cenas
 
+
 def renderizar_cena(info_cena):
     # Criação da câmera com os dados do arquivo
     dados_camera = info_cena['camera']
-    camera = Camera(dados_camera['C'], dados_camera['M'], dados_camera['V_up'], 
+    camera = Camera(dados_camera['C'], dados_camera['M'], dados_camera['V_up'],
                     dados_camera['d'], dados_camera['v_res'], dados_camera['h_res'])
 
     # Criação de objetos na cena
@@ -69,7 +72,10 @@ def renderizar_cena(info_cena):
     if 'planos' in info_cena:
         for plano_info in info_cena['planos']:
             objetos.append(Plano(plano_info['ponto'], plano_info['vetor_normal'], plano_info['cor_rgb']))
-
+    '''if 'triangulos' in info_cena:
+        for triangulo_info in info_cena['triangulos']:
+            objetos.append(Triangulo((triangulo_info['ponto1'], triangulo_info['ponto2'], triangulo_info['ponto3']), triangulo_info['cor_rgb']))
+'''
     # Inicialização da imagem
     imagem = np.zeros((camera.v_res, camera.h_res, 3), dtype=np.uint8)
 
@@ -100,16 +106,19 @@ def renderizar_cena(info_cena):
 
     return dados_imagem, (camera.h_res, camera.v_res)
 
+
 def criar_imagem_ppm(dados_imagem, resolucao):
     img = Image.new('RGB', resolucao)
     img.putdata(dados_imagem)
     return img
 
+
 def main():
-    info_cena = ler_arquivo_txt('cena.txt')
+    info_cena = ler_arquivo_txt('primeiraEntrega/cena.txt')
     dados_imagem, resolucao = renderizar_cena(info_cena)
     imagem = criar_imagem_ppm(dados_imagem, resolucao)
-    imagem.save('saida.ppm')
+    imagem.save('primeiraEntrega/saida.ppm')
+
 
 if __name__ == "__main__":
     main()

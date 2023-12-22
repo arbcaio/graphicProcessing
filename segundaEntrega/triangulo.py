@@ -8,7 +8,6 @@ class Triangulo:
     def __init__(self, pontos, cor):
         self.pontos = pontos
         self.cor = cor
-        self.id = uuid.uuid4()
 
         aresta1 = pontos[1] - pontos[0]
         aresta2 = pontos[2] - pontos[1]
@@ -18,6 +17,7 @@ class Triangulo:
         self.normal = self.vetor1.produto_vetorial(self.vetor2)
 
     def intersect(self, raio: Raio):
+        # Möller–Trumbore
         epsilon = 1e-6  # Valor pequeno para tratamento de erros de ponto flutuante
 
         # Verificando se o raio é paralelo ao triângulo
@@ -25,11 +25,12 @@ class Triangulo:
         a = self.vetor1.produto_escalar(h)
 
         if abs(a) < epsilon:  # se a está próximo de zero
-            return None  # raio é paralelo ao triângulo
+            return float('inf')  # raio é paralelo ao triângulo
 
         # calcular paramêtro u
         f = 1.0 / a
         s = raio.loc - self.pontos[0]
+        s = Vetor(*s.coordenadas)
         u = f * (s.produto_escalar(h))
 
         # verificar se u está no intervalo [0,1]
@@ -47,10 +48,7 @@ class Triangulo:
         t = f * (self.vetor2.produto_escalar(q))
 
         if t > epsilon:
-            '''ponto_intersecao = raio.loc + (raio.dir.coordenadas * t)
-            ponto_intersecao = Ponto(*ponto_intersecao)
-            return ponto_intersecao'''
-            return t, self.id
+            return t
         else:
             return float('inf')  # Interseção ocorre atrás da origem do raio
 

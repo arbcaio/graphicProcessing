@@ -16,6 +16,9 @@ class Vetor:
     def produto_vetorial(self, outro):
         return Vetor(*np.cross(self.coordenadas, outro.coordenadas))
 
+    def produto_por_escalar(self, escalar):
+        return Vetor(*(self.coordenadas * escalar))
+
     def norma(self):
         return np.linalg.norm(self.coordenadas)
 

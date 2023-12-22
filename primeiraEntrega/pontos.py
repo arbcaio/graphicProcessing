@@ -18,3 +18,6 @@ class Ponto:
 
     def distancia_ate(self, outro):
         return np.linalg.norm(self.coordenadas - outro.coordenadas)
+
+    def sub_vetor(self, vetor):
+        return Ponto(*(self.coordenadas - vetor.coordenadas))

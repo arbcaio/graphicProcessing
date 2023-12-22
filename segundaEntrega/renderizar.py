@@ -4,13 +4,14 @@ from triangulo import Triangulo, Ponto, Vetor, Raio
 from primeiraEntrega.camera import Camera
 
 
-def trace(triangulos, raio: Raio):
+def trace(triangulos: list[Triangulo], raio: Raio):
     s = []
 
     for triangulo in triangulos:
-        t, id = triangulo.intersect(raio)
+        t = triangulo.intersect(raio)
 
         if t != float('inf'):
+            print('achou')
             s.append((t, triangulo))
 
     return s
@@ -44,16 +45,27 @@ def render(triangulos, v_res, h_res, escala, distancia, E: Ponto, L: Ponto, up: 
     imagem = np.full((v_res, h_res, 3), cor_fundo)  # array da imagem inicializado com a cor de fundo
 
     # cálculo ponto de origem (inferior esquerdo)
-    intersecoes[0, 0] = E - distancia * w + escala * (((v_res - 1) / 2) * v - ((h_res - 1) / 2) * u)
+    # intersecoes[0, 0] = E - distancia * w + escala * (((v_res - 1) / 2) * v - ((h_res - 1) / 2) * u) -> expressão
+    a = (v_res - 1) / 2
+    b = (h_res - 1) / 2
+    c = v.produto_por_escalar(a) - u.produto_por_escalar(b)
+    c = c.produto_por_escalar(escala)
+    d = w.produto_por_escalar(distancia)
+    vetor_soma = d + c
+    intersecoes[0, 0] = E.sub_vetor(vetor_soma).coordenadas  # expressão simplificada
 
     # varrer pixels da imagem
     for i in range(v_res):
         for j in range(h_res):
             # move na direcao u e v multiplicando pelos indices e por s
-            intersecoes[i, j] = intersecoes[0, 0] + escala * (j * u - i * v)
-            dist_raio = Vetor(*(intersecoes[i, j] - E))
+            # intersecoes[i, j] = intersecoes[0, 0] + escala * (u.produto_por_escalar(j) - v.produto_por_escalar(i))
+            uv = u.produto_por_escalar(j) - v.produto_por_escalar(i)
+            uve = uv.produto_por_escalar(escala)
+            intersecoes[i, j] = intersecoes[0, 0] + uve.coordenadas
+            dir_raio = Vetor(*(intersecoes[i, j] - E.coordenadas))
             loc_raio = E
-            raio = Raio(loc_raio, dist_raio)
+            raio = Raio(loc_raio, dir_raio)
             imagem[i, j] = cast(triangulos, raio, cor_fundo)
 
+    # retorna imagem com cor normalizada
     return imagem / 255
