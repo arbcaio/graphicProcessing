@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-from primeiraEntrega.camera import Camera
 from primeiraEntrega.pontos import Ponto
 from primeiraEntrega.vetor import Vetor
 from renderizar import render
@@ -30,7 +28,7 @@ if __name__ == "__main__":
 
     # malha
     num_triangulos, num_vertices = readline(int)
-    r, g, b = readline(int)
+    r, g, b = readline(int)  # cor da malha
     cor_malha = np.array((r, g, b))
     vertices = []
     for i in range(num_vertices):

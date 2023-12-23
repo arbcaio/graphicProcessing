@@ -10,7 +10,7 @@ def trace(triangulos: list[Triangulo], raio: Raio):
     for triangulo in triangulos:
         t = triangulo.intersect(raio)
 
-        if t != float('inf'):
+        if t:
             print('achou')
             s.append((t, triangulo))
 
@@ -26,7 +26,7 @@ def cast(triangulos, raio: Raio, cor_fundo):
         primeiro = s[0][1]
         c = primeiro.cor
 
-    return c  # cor de fundo ou o primeiro
+    return c  # cor de fundo ou do primeiro triangulo
 
 
 def render(triangulos, v_res, h_res, escala, distancia, E: Ponto, L: Ponto, up: Vetor, cor_fundo):
