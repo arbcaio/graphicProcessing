@@ -3,8 +3,6 @@ import numpy as np
 
 from camera import Camera
 from intersecoes import Esfera, Plano, intersecao_raio_esfera, intersecao_raio_plano
-from pontos import Ponto
-from vetor import Vetor
 
 def ler_arquivo_txt(nome_arquivo):
     cenas = {}
@@ -96,7 +94,7 @@ def criar_imagem_ppm(dados_imagem, resolucao):
     return img
 
 def main():
-    info_cena = ler_arquivo_txt('C:\\Users\\caioc\\OneDrive\\Documentos\\UFPE\\2023.2\\Processamento Grafico\\graphicProcessing\\primeiraEntrega\\cena.txt')
+    info_cena = ler_arquivo_txt('primeiraEntrega\cena.txt')
     dados_imagem, resolucao = renderizar_cena(info_cena)
     imagem = criar_imagem_ppm(dados_imagem, resolucao)
     imagem.save('saida.ppm')
