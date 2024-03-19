@@ -9,7 +9,7 @@ Caio Braga - chab@cin.ufpe.br
 Luis Guilherme - lgnunees@gmail.com
 
 ## Project Overview
-The project is structured in multiple stages, each focusing on different aspects of graphic processing.
+The project is structured in multiple stages, each focusing on different aspects of graphic processing. There is a rendering available on 'saida.ppm'.
 
 ## Getting Started
 This guide will help you set up this project on Windows, including the installation of the OpenCV library required for Python.
@@ -19,9 +19,7 @@ This guide will help you set up this project on Windows, including the installat
 Clone this repository to your local machine using git clone.
 Navigate to the project directory with `cd graphicProcessing`.
 
-### Install OpenCV:
-
-Install OpenCV using pip: `pip install opencv-python`.
+Install the requirements using `pip install -r requirements.txt`.
 
 ### Verify Installation:
 
