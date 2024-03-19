@@ -94,7 +94,7 @@ def criar_imagem_ppm(dados_imagem, resolucao):
     return img
 
 def main():
-    info_cena = ler_arquivo_txt('primeiraEntrega\cena.txt')
+    info_cena = ler_arquivo_txt('src\\cena.txt')
     dados_imagem, resolucao = renderizar_cena(info_cena)
     imagem = criar_imagem_ppm(dados_imagem, resolucao)
     imagem.save('saida.ppm')

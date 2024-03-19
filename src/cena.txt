@@ -1,0 +1,7 @@
+Camera 0 0 -6 0 0 1 0 1 0 2.5 300 400
+Esfera 0 0 3 1 255 0 0
+Translacao 1 2 3    
+Translacao 2 2 3    
+Translacao 3 3 3    
+Plano 0 -1 0 0 1 0 0 255 0
+Rotacao 45         
